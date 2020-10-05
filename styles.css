@@ -12,7 +12,11 @@ body{
 
 }
 
-
+.night{
+    background-image: url('night.png');
+    background-size: cover;
+    background-position: center;
+}
 
 .current-weather{
     display: flex;

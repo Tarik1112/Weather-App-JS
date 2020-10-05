@@ -6,14 +6,16 @@ const api={
 const searchbox = document.querySelector('.search');
 searchbox.addEventListener('keypress',setQuery);
 
-var whole = document.querySelector('.main');
+let whole = document.querySelector('.main');
 whole.classList.add('hidden');
+
+let bg = document.querySelector('body');
 
 
 function setQuery(event){
 if(event.keyCode == 13){
     getResults(searchbox.value);
-    
+        
     }
 }
 
@@ -27,9 +29,13 @@ function getResults (query){
 function displayResults (weather) {
     console.log(weather);
     whole.classList.remove('hidden');
+    let now = new Date();
+    let time = timeBuilder(now);
+    if(time >= 20 | time <= 6){
+        bg.classList.add('night');
+    }
     let city = document.querySelector('.location .city');
     city.innerText = `${weather.name}, ${weather.sys.country}`;
-    let now = new Date();
     let date = document.querySelector('.location .date');
     date.innerText = dateBuilder(now);
     let temp = document.querySelector('.current .temp');
@@ -40,6 +46,8 @@ function displayResults (weather) {
 
     let hilo = document.querySelector('.current .temperatures');
     hilo.innerHTML = `${Math.round(weather.main.temp_max)}<span>&deg;c</span>/${Math.round(weather.main.temp_min)}<span>&deg;c</span>`;
+
+    
 }
 
 function dateBuilder (d){
@@ -52,7 +60,12 @@ function dateBuilder (d){
     let date = d.getDate();
     let month = months[d.getMonth()];
     let year = d.getFullYear();
-
-    return `${day} ${date} ${month} ${year}`;
+    let hours = d.getHours();
+    let minutes = d.getMinutes();
+    return `${day}, ${date} ${month} ${year}, ${hours}:${minutes}`;
 }
 
+function timeBuilder (d){
+    let hours = d.getHours();
+    return hours;
+}
