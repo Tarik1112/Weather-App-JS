@@ -103,3 +103,26 @@ main{
 .hidden{
     display: none;
 }
+
+.buttons{
+    margin-top: 20px;
+}
+
+.daily,
+.five-day{
+    padding: 30px 25px;
+    cursor: pointer;
+    border-radius: 50px;
+    outline: none;
+    border: solid 2px white;
+    font-size: 30px;
+    background-color: transparent;
+    color: white;
+}
+
+.daily{
+    margin-right: 10px;
+}
+.five-day{
+    margin-left: 10px;
+}

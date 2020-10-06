@@ -12,12 +12,15 @@ whole.classList.add('hidden');
 let bg = document.querySelector('body');
 
 
+
 function setQuery(event){
 if(event.keyCode == 13){
     getResults(searchbox.value);
         
     }
 }
+
+//Current weather
 
 function getResults (query){
     fetch(`${api.base}weather?q=${query}&units=metric&APPID=${api.key}`)
