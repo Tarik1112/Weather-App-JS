@@ -3,6 +3,11 @@ const api={
     base:"https://api.openweathermap.org/data/2.5/"
 }
 
+const api_five={
+    key:"7d13cd2c254074eca62c084c97b424d1",
+    base:"https://api.openweathermap.org/data/2.5/forecast/"
+}
+
 const searchbox = document.querySelector('.search');
 searchbox.addEventListener('keypress',setQuery);
 
@@ -16,14 +21,12 @@ let bg = document.querySelector('body');
 function setQuery(event){
 if(event.keyCode == 13){
     getResults(searchbox.value);
-        
+    getFiveResults(searchbox.value);
     }
 }
 
-//Current weather
-
-function getResults (query){
-    fetch(`${api.base}weather?q=${query}&units=metric&APPID=${api.key}`)
+function getResults (city){
+    fetch(`${api.base}weather?q=${city}&units=metric&APPID=${api.key}`)
     .then(weather =>{
         return weather.json();
     }).then(displayResults);
@@ -31,26 +34,39 @@ function getResults (query){
 
 function displayResults (weather) {
     console.log(weather);
+    currentWeather(weather);
+}
+
+function currentWeather(weather){
     whole.classList.remove('hidden');
     let now = new Date();
     let time = timeBuilder(now);
-    if(time >= 20 | time <= 6){
-        bg.classList.add('night');
+        if(time >= 18 | time <= 6){
+            bg.classList.add('night');
     }
     let city = document.querySelector('.location .city');
-    city.innerText = `${weather.name}, ${weather.sys.country}`;
+        city.innerText = `${weather.name}, ${weather.sys.country}`;
     let date = document.querySelector('.location .date');
-    date.innerText = dateBuilder(now);
+        date.innerText = dateBuilder(now);
     let temp = document.querySelector('.current .temp');
-    temp.innerHTML = `${Math.round(weather.main.temp)}<span>&deg;c</span>`;
+        temp.innerHTML = `${Math.round(weather.main.temp)}<span>&deg;c</span>`;
 
     let description = document.querySelector('.current .description');
-    description.innerText = `${weather.weather[0].main}`;
+        description.innerText = `${weather.weather[0].main}`;
 
     let hilo = document.querySelector('.current .temperatures');
     hilo.innerHTML = `${Math.round(weather.main.temp_max)}<span>&deg;c</span>/${Math.round(weather.main.temp_min)}<span>&deg;c</span>`;
+}
 
-    
+function getFiveResults(city){
+    fetch(`${api_five.base}?q=${city}&units=metric&APPID=${api_five.key}`)
+    .then(weather_five =>{
+        return weather_five.json();
+    }).then(displayFiveResults);
+}
+
+function displayFiveResults(weather){
+    console.log(weather);
 }
 
 function dateBuilder (d){
@@ -72,3 +88,14 @@ function timeBuilder (d){
     let hours = d.getHours();
     return hours;
 }
+
+
+/*function fiveDay (d){
+    let days = [];
+    let date = new Date;
+    let today = date.getDay();
+    
+}*/
+
+//Five day forecast
+

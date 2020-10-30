@@ -104,25 +104,30 @@ main{
     display: none;
 }
 
-.buttons{
+.button{
     margin-top: 20px;
 }
 
-.daily,
-.five-day{
+.fiveDay{
+    display: flex;
+    margin-top: 20px;
     padding: 30px 25px;
-    cursor: pointer;
-    border-radius: 50px;
-    outline: none;
-    border: solid 2px white;
     font-size: 30px;
     background-color: transparent;
     color: white;
 }
+.dayOne, .dayTwo, .dayThree, .dayFour, .dayFive{
+    margin: 0px 20px;
+    border: solid white 2px;
+    padding: 30px 25px;
+    outline: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: 0.4s;
+}
 
-.daily{
-    margin-right: 10px;
-}
-.five-day{
-    margin-left: 10px;
-}
+.dayOne:hover,.dayTwo:hover,.dayThree:hover,.dayFour:hover,.dayFive:hover {
+    background-color: white;
+    color: rgb(27, 27, 104);
+    transform: scale(1.1);
+ }
