@@ -16,6 +16,12 @@ whole.classList.add('hidden');
 
 let bg = document.querySelector('body');
 
+let dayOne = document.querySelector('.weekDayOne');
+let dayTwo = document.querySelector('.weekDayTwo');
+let dayThree = document.querySelector('.weekDayThree');
+let dayFour = document.querySelector('.weekDayFour');
+let dayFive = document.querySelector('.weekDayFive');
+
 
 
 function setQuery(event){
@@ -50,10 +56,8 @@ function currentWeather(weather){
         date.innerText = dateBuilder(now);
     let temp = document.querySelector('.current .temp');
         temp.innerHTML = `${Math.round(weather.main.temp)}<span>&deg;c</span>`;
-
     let description = document.querySelector('.current .description');
         description.innerText = `${weather.weather[0].main}`;
-
     let hilo = document.querySelector('.current .temperatures');
     hilo.innerHTML = `${Math.round(weather.main.temp_max)}<span>&deg;c</span>/${Math.round(weather.main.temp_min)}<span>&deg;c</span>`;
 }
@@ -67,6 +71,36 @@ function getFiveResults(city){
 
 function displayFiveResults(weather){
     console.log(weather);
+    let newDate = new Date;
+    let nextFiveDays = [newDate.getDay() + 1, newDate.getDay() + 2, newDate.getDay() + 3, newDate.getDay() + 4, newDate.getDay() + 5];
+    
+    nextFiveDays.forEach((day,index) => {
+        if(day > 8){
+            day = day%8 + 1;
+        }else{
+            null;
+        }
+            if (day == 8){
+            nextFiveDays[index] = "Monday";
+          }else if(day == 2) {
+            nextFiveDays[index] = "Tuesday"; 
+          } else if(day == 3) {
+            nextFiveDays[index] = "Wednesday";
+          } else if(day == 4) {
+            nextFiveDays[index] = "Thursday"; 
+          } else if(day == 5) {
+            nextFiveDays[index] = "Friday"; 
+          } else if(day == 6) {
+            nextFiveDays[index] = "Saturday";
+          } else if(day == 7) {
+            nextFiveDays[index] = "Sunday"; 
+         }
+    });
+    dayOne.innerText = nextFiveDays[0]; 
+    dayTwo.innerText = nextFiveDays[1]; 
+    dayThree.innerText = nextFiveDays[2]; 
+    dayFour.innerText = nextFiveDays[3]; 
+    dayFive.innerText = nextFiveDays[4]; 
 }
 
 function dateBuilder (d){
