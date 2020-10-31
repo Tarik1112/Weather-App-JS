@@ -22,7 +22,17 @@ let dayThree = document.querySelector('.weekDayThree');
 let dayFour = document.querySelector('.weekDayFour');
 let dayFive = document.querySelector('.weekDayFive');
 
+let temperatureOne = document.querySelector('.tempOne');
+let temperatureTwo = document.querySelector('.tempTwo');
+let temperatureThree = document.querySelector('.tempThree');
+let temperatureFour = document.querySelector('.tempFour');
+let temperatureFive = document.querySelector('.tempFive');
 
+let descriptionOne = document.querySelector('.descriptionOne');
+let descriptionTwo = document.querySelector('.descriptionTwo');
+let descriptionThree = document.querySelector('.descriptionThree');
+let descriptionFour = document.querySelector('.descriptionFour');
+let descriptionFive = document.querySelector('.descriptionFive');
 
 function setQuery(event){
 if(event.keyCode == 13){
@@ -101,6 +111,19 @@ function displayFiveResults(weather){
     dayThree.innerText = nextFiveDays[2]; 
     dayFour.innerText = nextFiveDays[3]; 
     dayFive.innerText = nextFiveDays[4]; 
+
+    temperatureOne.innerHTML = `${Math.round(weather.list[4].main.temp)}<span>&deg;c</span>`;
+    temperatureTwo.innerHTML = `${Math.round(weather.list[12].main.temp)}<span>&deg;c</span>`;
+    temperatureThree.innerHTML = `${Math.round(weather.list[20].main.temp)}<span>&deg;c</span>`;
+    temperatureFour.innerHTML = `${Math.round(weather.list[28].main.temp)}<span>&deg;c</span>`;
+    temperatureFive.innerHTML = `${Math.round(weather.list[36].main.temp)}<span>&deg;c</span>`;
+
+    descriptionOne.innerText = `${weather.list[4].weather[0].main}`;
+    descriptionTwo.innerText = `${weather.list[12].weather[0].main}`;
+    descriptionThree.innerText = `${weather.list[20].weather[0].main}`;
+    descriptionFour.innerText = `${weather.list[28].weather[0].main}`;
+    descriptionFive.innerText = `${weather.list[36].weather[0].main}`;
+
 }
 
 function dateBuilder (d){
