@@ -124,6 +124,7 @@ function displayFiveResults(weather){
     descriptionFour.innerText = `${weather.list[28].weather[0].main}`;
     descriptionFive.innerText = `${weather.list[36].weather[0].main}`;
 
+    
 }
 
 function dateBuilder (d){
@@ -138,7 +139,12 @@ function dateBuilder (d){
     let year = d.getFullYear();
     let hours = d.getHours();
     let minutes = d.getMinutes();
+    if(minutes < 10){
+        minutes = '0' + minutes;
+    }
     return `${day}, ${date} ${month} ${year}, ${hours}:${minutes}`;
+
+    
 }
 
 function timeBuilder (d){
@@ -147,12 +153,5 @@ function timeBuilder (d){
 }
 
 
-/*function fiveDay (d){
-    let days = [];
-    let date = new Date;
-    let today = date.getDay();
-    
-}*/
 
-//Five day forecast
 
